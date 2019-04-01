@@ -26,9 +26,15 @@ function loadImages() {
     return delBtn;
   }
 
+function handleBtn(){
+   var res = insertImg();
+   if(!res) add();
+}
+
+
 function insertImg(){
   addItem();
-  if(STATE.countForLoadImage > 20) return;
+  if(STATE.countForLoadImage > 20) return false;
   var body = d.getElementById('app');
   var imgAll = loadImages();
   var result = [];
@@ -73,6 +79,7 @@ function deleteItem(e){ // удаление элемента
   //removeChild(elem)
   var del = e.target.closest('.container-img');
 e.target.closest('.container-img').parentNode.removeChild(del);
+
 //del.style.display = 'none';
 
 }
@@ -84,6 +91,11 @@ function addItem(){
   divChild.id = STATE.countForLoadImage;
   divChild.className = 'countForLoadImage';
   elem.children[0] ? elem.insertBefore(divChild, elem.children[0]) : elem.appendChild(divChild);
+
+}
+
+function add(){
+
   var arrJSON = loadImages();
   var arr = [];
   var finder =[];
